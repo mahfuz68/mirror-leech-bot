@@ -21,7 +21,6 @@ jobs:
       - name: Build and push with Docker Compose
         env:
           VERSION: ${{ github.sha }}
-          BUILD_DATE: ${{ format('{0:yyyy-MM-ddTHH:mm:ssZ}', github.event.repository.pushed_at) }}
         run: |
           docker-compose build
           docker-compose push
