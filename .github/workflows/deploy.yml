@@ -26,4 +26,4 @@ jobs:
           docker compose push
 
       - name: Image digest
-        run: docker rmi $(docker images -q)
+        run: docker images
