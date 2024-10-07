@@ -22,8 +22,8 @@ jobs:
         env:
           VERSION: ${{ github.sha }}
         run: |
-          docker-compose build
-          docker-compose push
+          docker compose build
+          docker compose push
 
       - name: Image digest
         run: docker rmi $(docker images -q)
