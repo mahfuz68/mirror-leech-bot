@@ -22,11 +22,11 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and push Docker image
-        env:
-          VERSION: ${{ github.sha }}
-        run: |
-          docker compose build --build-arg VERSION=${{ github.sha }} --tag ${{ secrets.DOCKER_USERNAME }}/mirror-leech:latest
-          docker compose push ${{ secrets.DOCKER_USERNAME }}/mirror-leech:latest
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/mirror-leech:latest,${{ secrets.DOCKER_USERNAME }}/mirror-leech:${{ github.sha }}
 
       - name: Display built images
         run: docker images
